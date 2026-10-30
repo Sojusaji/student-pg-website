@@ -3,26 +3,31 @@ import { useEffect, useState } from "react";
 import { ArrowUp, ArrowUpRight, BedSingle, BookOpen, Check, ChefHat, ChevronDown, Home, MapPin, Menu, MessageCircle, Moon, Phone, ShowerHead, Sun, Sunrise, Users, Wind, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { copyrightNotice, residence, siteName, telHref, whatsappHref, walkingDirectionsHref } from "@/lib/residence";
-import roomImage from "@/assets/sample-shared-room.jpg";
-import hallImage from "@/assets/sample-hall.jpg";
-import bathroomImage from "@/assets/sample-bathroom.jpg";
-import foodImage from "@/assets/sample-food.jpg";
-import mapRouteImage from "@/assets/location.png";
+import roomImageJpg from "@/assets/sample-shared-room.jpg";
+import roomImageWebp from "@/assets/sample-shared-room.webp";
+import hallImageJpg from "@/assets/sample-hall.jpg";
+import hallImageWebp from "@/assets/sample-hall.webp";
+import bathroomImageJpg from "@/assets/sample-bathroom.jpg";
+import bathroomImageWebp from "@/assets/sample-bathroom.webp";
+import foodImageJpg from "@/assets/sample-food.jpg";
+import foodImageWebp from "@/assets/sample-food.webp";
+import mapRouteImagePng from "@/assets/location.png";
+import mapRouteImageWebp from "@/assets/location.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { 
-        title: "Girls PG near Elims College of Pharmacy | Terrace Suites Villadam" 
+      {
+        title: "Girls PG near Elims College of Pharmacy | Terrace Suites Villadam"
       },
       {
         name: "description",
         content:
           "Standard terrace-level girls PG accommodation 200m (3 min walk) from Elims College of Pharmacy, Villadam, Thrissur. Non-AC shared rooms, attached bathrooms & home-cooked meals.",
       },
-      { 
-        property: "og:title", 
-        content: "Girls PG near Elims College of Pharmacy | Terrace Suites" 
+      {
+        property: "og:title",
+        content: "Girls PG near Elims College of Pharmacy | Terrace Suites"
       },
       {
         property: "og:description",
@@ -35,13 +40,13 @@ export const Route = createFileRoute("/")({
       { property: "og:locale", content: "en_IN" },
 
       { name: "twitter:card", content: "summary_large_image" },
-      { 
-        name: "twitter:title", 
-        content: "Girls PG near Elims College of Pharmacy | Terrace Suites" 
+      {
+        name: "twitter:title",
+        content: "Girls PG near Elims College of Pharmacy | Terrace Suites"
       },
-      { 
-        name: "twitter:description", 
-        content: "200m walking distance from Elims College of Pharmacy, Villadam, Thrissur." 
+      {
+        name: "twitter:description",
+        content: "200m walking distance from Elims College of Pharmacy, Villadam, Thrissur."
       },
       { name: "twitter:image", content: "https://your-deployed-domain.vercel.app/og-card.jpg" },
     ],
@@ -112,7 +117,10 @@ function Index() {
 
     <main>
       <section id="overview" className="residence-hero relative isolate flex flex-col justify-center overflow-hidden text-inverse-on-surface">
-        <img src={roomImage} width={1536} height={1024} alt="Sample shared room with simple beds, pillows and desks; not the actual residence" className="hero-photo absolute inset-0 -z-20 h-full w-full object-cover" />
+        <picture>
+          <source srcSet={roomImageWebp} type="image/webp"/>
+          <img src={roomImageJpg} width={1536} height={1024} alt="Sample shared room with simple beds, pillows and desks; not the actual residence" className="hero-photo absolute inset-0 -z-20 h-full w-full object-cover" />
+        </picture>
         <div className="hero-shade absolute inset-0 -z-10" />
         <div className="hero-content mx-auto w-full max-w-6xl px-5 lg:px-0">
           <p className="hero-eyebrow flex items-center gap-3 text-xs font-medium uppercase"><span className="h-px w-8 bg-hero-accent" /> Girls residence · Terrace living</p>
@@ -140,19 +148,39 @@ function Index() {
       <section id="facilities" className="mx-auto max-w-6xl px-5 py-16 lg:px-0">
         <p className="text-xs font-semibold uppercase text-primary">Our facilities</p><h2 className="mt-3 font-title text-3xl font-semibold">A practical place to stay.</h2><p className="mt-4 max-w-2xl leading-7 text-on-surface-variant">A small residence with the essentials for daily living and study. Standard rooms and simple facilities — without luxury extras.</p>
         <div className="mt-9 grid gap-7 md:grid-cols-3">{[
-          { image: roomImage, title: 'Two shared rooms', description: 'Two to three residents per room. Beds, pillows and desks are provided in these standard non-AC rooms.', alt: 'Illustrative standard bedroom with basic beds and desks' },
-          { image: hallImage, title: 'One medium-sized hall', description: 'A shared hall with a medium amount of space for spending time together outside the bedrooms.', alt: 'Illustrative medium-sized common hall with simple furnishings' },
-          { image: bathroomImage, title: 'Two attached bathrooms', description: 'An attached bathroom for each room, with standard everyday facilities rather than luxury fittings.', alt: 'Illustrative small bathroom with basic fittings' },
-        ].map(item => <figure key={item.title}><div className="relative overflow-hidden rounded-lg"><img loading="lazy" src={item.image} alt={`${item.alt}; sample photo, not the actual property`} width={1024} height={768} className="aspect-4/3 w-full object-cover" />
-          <span className="absolute bottom-3 left-3 bg-surface/95 px-2 py-1 text-[11px] text-on-surface">Sample photo</span></div>
-          <figcaption className="pt-5"><h3 className="font-title text-xl font-semibold">{item.title}</h3><p className="mt-3 text-sm leading-6 text-on-surface-variant">{item.description}</p></figcaption></figure>)}</div>
+          { imageJpg: roomImageJpg, imageWebp: roomImageWebp, title: 'Two shared rooms', description: 'Two to three residents per room. Beds, pillows and desks are provided in these standard non-AC rooms.', alt: 'Illustrative standard bedroom with basic beds and desks' },
+          { imageJpg: hallImageJpg, imageWebp: hallImageWebp, title: 'One medium-sized hall', description: 'A shared hall with a medium amount of space for spending time together outside the bedrooms.', alt: 'Illustrative medium-sized common hall with simple furnishings' },
+          { imageJpg: bathroomImageJpg, imageWebp: bathroomImageWebp, title: 'Two attached bathrooms', description: 'An attached bathroom for each room, with standard everyday facilities rather than luxury fittings.', alt: 'Illustrative small bathroom with basic fittings' },
+        ].map(item =>
+          <figure key={item.title}>
+            <div className="relative overflow-hidden rounded-lg">
+              <picture>
+                <source srcSet={item.imageWebp} type="image/webp" />
+                <img loading="lazy"
+                  src={item.imageJpg}
+                  alt={`${item.alt};
+                  sample photo, not the actual property`}
+                  width={1024} height={768} className="aspect-4/3 w-full object-cover" />
+              </picture>
+              <span className="absolute bottom-3 left-3 bg-surface/95 px-2 py-1 text-[11px] text-on-surface">Sample photo</span></div>
+            <figcaption className="pt-5">
+              <h3 className="font-title text-xl font-semibold">{item.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-on-surface-variant">{item.description}</p>
+            </figcaption></figure>)}</div>
         <p className="mt-7 border-t border-outline-variant/40 pt-5 text-sm text-on-surface-variant">All photos shown are samples, not photographs of our residence. Actual rooms and furnishings may differ.</p>
       </section>
 
       <section id="food" className="border-t border-outline-variant/40">
         <div className="mx-auto grid max-w-6xl items-center gap-9 px-5 py-16 md:grid-cols-2 lg:px-0">
           <figure className="relative order-2 overflow-hidden rounded-lg md:order-1">
-            <img loading="lazy" src={foodImage} alt="Illustrative home-cooked meals served to residents; sample photo, not an actual meal served here" width={1024} height={768} className="aspect-4/3 w-full object-cover" />
+            <picture>
+              <source srcSet={foodImageWebp} type="image/webp" />
+              <img loading="lazy"
+                src={foodImageJpg}
+                alt="Illustrative home-cooked meals served to residents; sample photo, not an actual meal served here"
+                width={1024} height={768}
+                className="aspect-4/3 w-full object-cover" />
+            </picture>
             <span className="absolute bottom-3 left-3 bg-surface/95 px-2 py-1 text-[11px] text-on-surface">Sample photo</span>
           </figure>
           <div className="order-1 md:order-2">
@@ -161,7 +189,15 @@ function Index() {
             <p className="mt-4 max-w-md leading-7 text-on-surface-variant">We provide home-cooked food for the residents staying with us: {residence.food.meals.join(', ')}.</p>
             <ul className="mt-7 grid gap-3 sm:grid-cols-3">{[
               [Sunrise, 'Breakfast', 'Every morning'], [Sun, 'Lunch', 'Every midday'], [Moon, 'Dinner', 'Every evening'],
-            ].map(([Icon, title, subtitle]) => { const MealIcon = Icon as typeof Home; return <li key={String(title)} className="rounded-lg border border-outline-variant/50 px-4 py-4"><MealIcon className="size-5 text-primary" strokeWidth={1.5} /><p className="mt-3 font-title text-sm font-semibold">{String(title)}</p><p className="mt-1 text-xs text-on-surface-variant">{String(subtitle)}</p></li>; })}</ul>
+            ].map(([Icon, title, subtitle]) => {
+              const MealIcon = Icon as typeof Home;
+              return <li key={String(title)} className="rounded-lg border border-outline-variant/50 px-4 py-4">
+                <MealIcon className="size-5 text-primary" strokeWidth={1.5} />
+                <p className="mt-3 font-title text-sm font-semibold">{String(title)}</p>
+                <p className="mt-1 text-xs text-on-surface-variant">{String(subtitle)}</p>
+              </li>;
+            })}
+            </ul>
             <p className="mt-6 border-t border-outline-variant/40 pt-5 text-sm text-on-surface-variant">Food is charged separately from the monthly rent. Message me for the current food charge.</p>
           </div>
         </div>
@@ -219,11 +255,14 @@ function Index() {
             {/* Custom Map Route Image Preview */}
 
             <div className="relative lg:col-span-2 overflow-hidden rounded-lg border border-outline-variant/60 shadow-sm bg-surface-container-high/40">
-              <img
-                src={mapRouteImage}
-                alt="Map showing 200m walking route from ELIMS College of Pharmacy to residence"
-                className="w-full h-auto max-h-87.5 sm:max-h-105 object-contain sm:object-cover mx-auto"
-              />
+              <picture>
+                <source srcSet={mapRouteImageWebp} type="image/webp" />
+                <img
+                  src={mapRouteImagePng}
+                  alt="Map showing 200m walking route from ELIMS College of Pharmacy to residence"
+                  className="w-full h-auto max-h-87.5 sm:max-h-105 object-contain sm:object-cover mx-auto"
+                />
+              </picture>
               <div className="absolute bottom-3 left-3 bg-surface/95 px-2.5 py-1 rounded text-[11px] text-on-surface shadow-sm font-medium">
                 📍 Verified Route: 200m (3 min walk)
               </div>
