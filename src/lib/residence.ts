@@ -17,8 +17,8 @@ export const residence = {
   },
   contact: {
     // Owner's real contact number, entered exactly as provided.
-    phone: '777893922944',
-    whatsappNumber: '777893922944',
+    phone: '9633267195',
+    whatsappNumber: '919633267195',
     // Area-level address shown publicly (same area as the map); the street address is shared on request.
     address: 'Villadam, Thrissur, Kerala',
   },
@@ -34,13 +34,14 @@ export const residence = {
   },
 } as const;
 
-export const siteName = 'Terrace Suites';
+export const siteName = 'TERRACE SUITES';
 
 export const whatsappInquiryMessage =
   "Hi! I'm interested in a room at Terrace Suites. Could you please share the rent, deposit and current availability?";
 
 export function whatsappHref(message: string = whatsappInquiryMessage): string {
-  return `https://wa.me/${residence.contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
+  const cleanPhone = residence.contact.whatsappNumber.replace(/\D/g, '');
+  return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
 }
 
 export function telHref(): string {
@@ -48,8 +49,10 @@ export function telHref(): string {
 }
 
 export function walkingDirectionsHref(): string {
-  const destination = encodeURIComponent(`${residence.location.college.name}, Villadam, Thrissur, Kerala 680631`);
-  return `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=walking`;
+  const collegeAddress = encodeURIComponent(`${residence.location.college.name}, Villadam, Thrissur, Kerala 680631`);
+  const homeAddress= encodeURIComponent("10.562626970548978, 76.24355904905198");
+  
+  return `https://www.google.com/maps/dir/?api=1&origin=${homeAddress}&destination=${collegeAddress}&travelmode=walking`;
 }
 
 export function copyrightNotice(year: number): string {

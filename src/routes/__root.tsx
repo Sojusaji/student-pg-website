@@ -78,10 +78,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Terrace Suites" },
-      { name: "description", content: "Terrace Suites standard terrace-level girls residence with shared non-AC rooms." },
+      {
+        title: "Girls PG near Elims College of Pharmacy | Terrace Suites Villadam Thrissur"
+      },
+      {
+        name: "description",
+        content: "Standard terrace-level girls PG accommodation within 200m (3 min walk) of Elims College of Pharmacy, Villadam, Thrissur. Home-cooked food, shared non-AC rooms & attached bathrooms."
+      },
+      {
+        name: "keywords",
+        content: "Girls PG Villadam, PG near Elims Pharmacy College, Student accommodation Thrissur, Paying guest Villadam, Terrace Suites Thrissur"
+      },
+      // Open Graph (For WhatsApp, Facebook, and LinkedIn links preview)
+      { property: "og:title", content: "Girls PG near Elims College of Pharmacy | Terrace Suites" },
+      { property: "og:description", content: "Standard terrace-level girls accommodation 200m from Elims College of Pharmacy, Villadam. Home-cooked meals and attached bathrooms." },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_IN" },
+      // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Girls PG near Elims College of Pharmacy | Terrace Suites" },
+      { name: "twitter:description", content: "200m walking distance from Elims College of Pharmacy, Villadam, Thrissur." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
