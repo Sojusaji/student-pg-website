@@ -13,7 +13,9 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     tanstackStart(), // Must come before react plugin
-    nitro(),
+   nitro({
+      preset: 'vercel',
+    }),
     viteReact(),
   ],
   resolve: {
