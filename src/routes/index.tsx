@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Standard terrace-level girls PG accommodation within 200m of Elims College of Pharmacy, Villadam. Non-AC rooms, attached bathrooms & home-cooked meals.",
       },
-      { property: "og:image", content: "https://your-deployed-domain.vercel.app/og-card.jpg" },
+      { property: "og:image", content: "https://terracesuites.vercel.app/og-card.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { property: "og:type", content: "website" },
@@ -48,7 +48,7 @@ export const Route = createFileRoute("/")({
         name: "twitter:description",
         content: "200m walking distance from Elims College of Pharmacy, Villadam, Thrissur."
       },
-      { name: "twitter:image", content: "https://your-deployed-domain.vercel.app/og-card.jpg" },
+      { name: "twitter:image", content: "https://terracesuites.vercel.app/og-card.jpg" },
     ],
   }),
   component: Index,
