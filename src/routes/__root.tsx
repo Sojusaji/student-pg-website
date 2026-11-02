@@ -75,12 +75,11 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
+    title: "Girls PG near Elims College of Pharmacy | Terrace Suites Villadam Thrissur",
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        title: "Girls PG near Elims College of Pharmacy | Terrace Suites Villadam Thrissur"
-      },
+      { name: "google-site-verification", content: "google5dcd9a71d551112e.html" },
       {
         name: "description",
         content: "Standard terrace-level girls PG accommodation within 200m (3 min walk) of Elims College of Pharmacy, Villadam, Thrissur. Home-cooked food, shared non-AC rooms & attached bathrooms."
