@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "google-site-verification", content: "google5dcd9a71d551112e.html" },
+      { name:"google-site-verification", content:"uwX4RillHmc161P3w6Yzau3f3N1ZwRDAzBTPvwyqfOE"},
       {
         name: "description",
         content: "Standard terrace-level girls PG accommodation within 200m (3 min walk) of Elims College of Pharmacy, Villadam, Thrissur. Home-cooked food, shared non-AC rooms & attached bathrooms."
