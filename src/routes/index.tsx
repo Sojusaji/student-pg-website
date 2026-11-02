@@ -57,9 +57,9 @@ export const Route = createFileRoute("/")({
 const navigation = [['Overview', '#overview'], ['Facilities', '#facilities'], ['Food', '#food'], ['Room sharing', '#suite-breakdown'], ['FAQs', '#faq']] as const;
 const questions = [
   ['How many people share a room?', `There are ${residence.rooms} rooms. Each accommodates ${residence.residentsPerRoom.min}–${residence.residentsPerRoom.max} residents at a time.`],
-  ['Are the rooms air-conditioned?', 'No. The rooms are standard non-AC accommodation, not luxury suites.'],
-  ['What furniture is provided?', 'Beds, pillows and desks are provided. Please confirm any other items with me before moving in.'],
-  ['Are the bathrooms attached?', 'Yes. The residence has two attached bathrooms, one for each room.'],
+  ['Are the rooms air-conditioned?', 'Our standard rooms are non-AC, but they are fully wired for air conditioning. If you would like an AC unit set up for your stay, we can easily arrange that for you upon request.'],
+  ['What furniture is provided?', 'Beds, chairs and desks are provided. Please confirm any other items with me before moving in.'],
+  ['Are the bathrooms attached?', 'Yes. The residence has three attached bathrooms, one for each room.'],
   ['Where is the accommodation located?', 'The rooms are built on my terrace / penthouse level, with one medium-sized shared hall.'],
   ['Are these photos of the actual property?', 'No. These are illustrative sample images. Original photographs will be added after they are taken.'],
   ['Is food provided?', 'Yes. We provide home-cooked breakfast, lunch and dinner for residents. Food is charged separately from the monthly rent — message me for the current food charge.'],
@@ -138,7 +138,7 @@ function Index() {
       <section aria-label="Residence at a glance" className="border-b border-outline-variant/40">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-7 px-5 py-9 md:grid-cols-5 lg:px-0">{[
           [BedSingle, `${residence.rooms} rooms`, 'Standard shared rooms'],
-          [Users, '2–3 residents', 'Per room'],
+          [Users, '3–4 residents', 'Per room'],
           [ShowerHead, `${residence.attachedBathrooms} attached bathrooms`, 'One for each room'],
           [Wind, 'Non-AC', 'Everyday accommodation'],
           [ChefHat, 'Home-cooked food', 'Breakfast, lunch & dinner'],
@@ -148,9 +148,9 @@ function Index() {
       <section id="facilities" className="mx-auto max-w-6xl px-5 py-16 lg:px-0">
         <p className="text-xs font-semibold uppercase text-primary">Our facilities</p><h2 className="mt-3 font-title text-3xl font-semibold">A practical place to stay.</h2><p className="mt-4 max-w-2xl leading-7 text-on-surface-variant">A small residence with the essentials for daily living and study. Standard rooms and simple facilities — without luxury extras.</p>
         <div className="mt-9 grid gap-7 md:grid-cols-3">{[
-          { imageJpg: roomImageJpg, imageWebp: roomImageWebp, title: 'Two shared rooms', description: 'Two to three residents per room. Beds, pillows and desks are provided in these standard non-AC rooms.', alt: 'Illustrative standard bedroom with basic beds and desks' },
+          { imageJpg: roomImageJpg, imageWebp: roomImageWebp, title: 'Three shared rooms', description: 'Three to four residents per room. Beds, chairs and desks are provided in these standard non-AC rooms.', alt: 'Illustrative standard bedroom with basic beds, cahirs and desks' },
           { imageJpg: hallImageJpg, imageWebp: hallImageWebp, title: 'One medium-sized hall', description: 'A shared hall with a medium amount of space for spending time together outside the bedrooms.', alt: 'Illustrative medium-sized common hall with simple furnishings' },
-          { imageJpg: bathroomImageJpg, imageWebp: bathroomImageWebp, title: 'Two attached bathrooms', description: 'An attached bathroom for each room, with standard everyday facilities rather than luxury fittings.', alt: 'Illustrative small bathroom with basic fittings' },
+          { imageJpg: bathroomImageJpg, imageWebp: bathroomImageWebp, title: 'Three attached bathrooms', description: 'An attached bathroom for each room, with standard everyday facilities rather than luxury fittings.', alt: 'Illustrative small bathroom with basic fittings' },
         ].map(item =>
           <figure key={item.title}>
             <div className="relative overflow-hidden rounded-lg">
@@ -204,8 +204,8 @@ function Index() {
       </section>
 
       <section id="suite-breakdown" className="bg-surface-container-low">
-        <div className="mx-auto grid max-w-6xl gap-9 px-5 py-16 md:grid-cols-2 lg:px-0"><div><p className="text-xs font-semibold uppercase text-primary">Room sharing</p><h2 className="mt-3 font-title text-3xl font-semibold">Space for two or three.</h2><p className="mt-4 max-w-md leading-7 text-on-surface-variant">Both rooms offer small-group shared accommodation on the terrace / penthouse level. Choose your stay after seeing the room and confirming availability.</p><Button asChild className="mt-6"><a href="#book-tour">Discuss your stay <ArrowUpRight /></a></Button></div><div className="border-y border-outline-variant/60">{[
-          [Users, '2–3 people per room', 'Two rooms in total'], [BedSingle, 'Beds & pillows provided', 'Simple everyday furnishings'], [BookOpen, 'Desks provided', 'Space for your study essentials'], [Wind, 'Standard non-AC rooms', 'No luxury or biometric access facilities'],
+        <div className="mx-auto grid max-w-6xl gap-9 px-5 py-16 md:grid-cols-2 lg:px-0"><div><p className="text-xs font-semibold uppercase text-primary">Room sharing</p><h2 className="mt-3 font-title text-3xl font-semibold">Space for three or four.</h2><p className="mt-4 max-w-md leading-7 text-on-surface-variant">Both rooms offer small-group shared accommodation on the terrace / penthouse level. Choose your stay after seeing the room and confirming availability.</p><Button asChild className="mt-6"><a href="#book-tour">Discuss your stay <ArrowUpRight /></a></Button></div><div className="border-y border-outline-variant/60">{[
+          [Users, '3–4 people per room', 'Three rooms in total'], [BedSingle, 'Beds & Chairs provided', 'Simple everyday furnishings'], [BookOpen, 'Desks provided', 'Space for your study essentials'], [Wind, 'Standard non-AC rooms', 'No luxury or biometric access facilities'],
         ].map(([Icon, title, subtitle]) => { const ItemIcon = Icon as typeof Home; return <div className="flex gap-4 border-b border-outline-variant/40 py-5 last:border-0" key={String(title)}><ItemIcon className="size-5 shrink-0 text-primary" /><div><p className="font-semibold">{String(title)}</p><p className="mt-1 text-sm text-on-surface-variant">{String(subtitle)}</p></div></div>; })}</div></div>
       </section>
 

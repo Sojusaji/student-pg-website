@@ -1,13 +1,13 @@
 export const residence = {
-  rooms: 2,
-  residentsPerRoom: { min: 2, max: 3 },
-  attachedBathrooms: 2,
+  rooms: 3,
+  residentsPerRoom: { min: 3, max: 4 },
+  attachedBathrooms: 3,
   halls: 1,
   hallSize: 'medium',
   airConditioned: false,
   biometricAccess: false,
   level: 'terrace / penthouse',
-  provided: ['beds', 'pillows', 'desks'],
+  provided: ['beds', 'Chairs', 'desks'],
   // Owner-confirmed: home-cooked breakfast, lunch and dinner, billed apart from rent.
   food: {
     provided: true,
@@ -17,8 +17,8 @@ export const residence = {
   },
   contact: {
     // Owner's real contact number, entered exactly as provided.
-    phone: '9633267195',
-    whatsappNumber: '919633267195',
+    phone: '9495464949',
+    whatsappNumber: '919495464949',
     // Area-level address shown publicly (same area as the map); the street address is shared on request.
     address: 'Villadam, Thrissur, Kerala',
   },
