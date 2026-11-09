@@ -2,7 +2,7 @@ export const residence = {
   rooms: 3,
   residentsPerRoom: { min: 3, max: 4 },
   attachedBathrooms: 3,
-  halls: 1,
+  halls: 2,
   hallSize: 'medium',
   airConditioned: false,
   biometricAccess: false,

@@ -1,18 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ArrowUp, ArrowUpRight, BedSingle, BookOpen, Check, ChefHat, ChevronDown, Home, MapPin, Menu, MessageCircle, Moon, Phone, ShowerHead, Sun, Sunrise, Users, Wind, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { copyrightNotice, residence, siteName, telHref, whatsappHref, walkingDirectionsHref } from "@/lib/residence";
-import roomImageJpg from "@/assets/sample-shared-room.jpg";
-import roomImageWebp from "@/assets/sample-shared-room.webp";
-import hallImageJpg from "@/assets/sample-hall.jpg";
-import hallImageWebp from "@/assets/sample-hall.webp";
-import bathroomImageJpg from "@/assets/sample-bathroom.jpg";
-import bathroomImageWebp from "@/assets/sample-bathroom.webp";
 import foodImageJpg from "@/assets/sample-food.jpg";
 import foodImageWebp from "@/assets/sample-food.webp";
 import mapRouteImagePng from "@/assets/location.png";
 import mapRouteImageWebp from "@/assets/location.webp";
+import roomImage1Png from "@/assets/roomImage1.png";
+import roomImage2Png from "@/assets/roomImage2.png";
+import roomImage3Png from "@/assets/roomImage3.png";
+import hallImage1Png from "@/assets/hallImage1.png";
+import hallImage2Png from "@/assets/hallImage2.png";
+import bathroomImage1Png from "@/assets/bathroomImage1.png";
+import bathroomImage2Png from "@/assets/bathroomImage2.png";
+import bathroomImage3Png from "@/assets/bathroomImage3.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -61,7 +63,7 @@ const questions = [
   ['What furniture is provided?', 'Beds, chairs and desks are provided. Please confirm any other items with me before moving in.'],
   ['Are the bathrooms attached?', 'Yes. The residence has three attached bathrooms, one for each room.'],
   ['Where is the accommodation located?', 'The rooms are built on my terrace / penthouse level, with one medium-sized shared hall.'],
-  ['Are these photos of the actual property?', 'No. These are illustrative sample images. Original photographs will be added after they are taken.'],
+  ['Are these photos of the actual property?', 'Yes, these photos show the actual property'],
   ['Is food provided?', 'Yes. We provide home-cooked breakfast, lunch and dinner for residents. Food is charged separately from the monthly rent — message me for the current food charge.'],
   ['How do I confirm rent and availability?', 'Message me on WhatsApp — I will confirm current rent, deposit, availability and house rules directly.'],
 ];
@@ -85,10 +87,71 @@ function CopyrightLine() {
   return <>{copyrightNotice(year)}</>;
 }
 
+
+const facilities = [
+  {
+    title: "Three shared rooms",
+    description: "Three to four residents per room. Beds, chairs and desks are provided in these standard non-AC rooms.",
+    images: [
+      { imagePng: roomImage1Png, imageWebp: "", alt: "Standard bedroom view with beds" },
+      { imagePng: roomImage2Png, imageWebp: "", alt: "Standard bedroom view with a bed" },
+       { imagePng: roomImage3Png, imageWebp: "", alt: "Standard bedroom view with a washbasin and mirror" },
+    ],
+  },
+  {
+    title: "Two medium-sized hall",
+    description: "Two shared hall with a medium amount of space for spending time together outside the bedrooms.",
+    images: [
+      { imagePng: hallImage1Png, imageWebp: "", alt: "Medium-sized common hall main view" },
+      { imagePng: hallImage2Png, imageWebp: "", alt: "Seating area in the common hall" },
+    ],
+  },
+  {
+    title: "Three attached bathrooms",
+    description: "An attached bathroom for each room, with standard everyday facilities rather than luxury fittings.",
+    images: [
+      { imagePng: bathroomImage1Png, imageWebp: "", alt: "Attached bathroom door view / Front view" },
+      { imagePng: bathroomImage2Png, imageWebp: "", alt: "Attached bathroom with basic fittings" },
+      { imagePng: bathroomImage3Png, imageWebp: "", alt: "Attached bathroom with basic fittings" },
+    ],
+  },
+];
+
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showTop, setShowTop] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+
+  const [activeIndices, setActiveIndices] = useState<{ [key: number]: number }>({
+    0: 0,
+    1: 0,
+    2: 0,
+  });
+
+  const scrollContainerRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
+
+  const handleScroll = (cardIndex: number, e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollLeft = container.scrollLeft;
+    const itemWidth = container.clientWidth;
+    const newIndex = Math.round(scrollLeft / itemWidth);
+
+    if (activeIndices[cardIndex] !== newIndex) {
+      setActiveIndices((prev) => ({ ...prev, [cardIndex]: newIndex }));
+    }
+  };
+
+
+  const scrollToImage = (cardIndex: number, imageIndex: number) => {
+    const container = scrollContainerRefs.current[cardIndex];
+    if (container) {
+      const targetX = container.clientWidth * imageIndex;
+      container.scrollTo({ left: targetX, behavior: "smooth" });
+      setActiveIndices((prev) => ({ ...prev, [cardIndex]: imageIndex }));
+    }
+  };
+
   useEffect(() => {
     const onScroll = () => setShowTop(window.scrollY > 350);
     onScroll();
@@ -118,8 +181,8 @@ function Index() {
     <main>
       <section id="overview" className="residence-hero relative isolate flex flex-col justify-center overflow-hidden text-inverse-on-surface">
         <picture>
-          <source srcSet={roomImageWebp} type="image/webp"/>
-          <img src={roomImageJpg} width={1536} height={1024} alt="Sample shared room with simple beds, pillows and desks; not the actual residence" className="hero-photo absolute inset-0 -z-20 h-full w-full object-cover" />
+          <source srcSet={""} type="image/webp" />
+          <img src={roomImage1Png} width={1536} height={1024} alt="Sample shared room with simple beds, pillows and desks; not the actual residence" className="hero-photo absolute inset-0 -z-20 h-full w-full object-cover" />
         </picture>
         <div className="hero-shade absolute inset-0 -z-10" />
         <div className="hero-content mx-auto w-full max-w-6xl px-5 lg:px-0">
@@ -129,8 +192,7 @@ function Index() {
           <p className="hero-description mt-3 max-w-sm text-sm leading-6 text-inverse-on-surface/85">Simple, shared non-AC rooms. Attached bathrooms.<br className="hidden sm:block" /> Everyday essentials, on our terrace.</p>
           <div className="hero-actions mt-7 flex flex-wrap items-center gap-5"><Button asChild size="lg" className="h-12 rounded-sm bg-hero-accent px-6 text-hero-accent-foreground shadow-none hover:bg-hero-accent/90"><a href="#book-tour">Plan a visit <ArrowUpRight /></a></Button><Button asChild variant="ghost" className="h-12 rounded-full border border-inverse-on-surface/40 px-5 text-inverse-on-surface hover:bg-inverse-on-surface/10"><a href={whatsappHref()} target="_blank" rel="noopener noreferrer"><MessageCircle className="size-4" /> WhatsApp me</a></Button><Button asChild variant="ghost" className="h-12 rounded-none border-b border-inverse-on-surface/50 px-0 text-inverse-on-surface hover:bg-transparent hover:text-hero-accent"><a href="#facilities">Explore the residence <ArrowUpRight /></a></Button></div>
         </div>
-        <div className="hero-footer mx-auto flex w-full max-w-6xl items-end justify-between gap-5 px-5 lg:px-0">
-          <p className="max-w-xs text-[10px] leading-4 text-inverse-on-surface/80">Illustrative sample photo · Not the actual property</p>
+        <div className="hero-footer mx-auto flex w-full max-w-6xl items-end justify-end gap-5 px-5 lg:px-0">
           <Button asChild size="icon" variant="ghost" className="size-10 shrink-0 rounded-full border border-inverse-on-surface/40 text-inverse-on-surface hover:bg-inverse-on-surface/10" title="Explore the residence"><a href="#facilities" aria-label="Scroll to facilities"><ChevronDown className="size-5" /></a></Button>
         </div>
       </section>
@@ -146,28 +208,63 @@ function Index() {
       </section>
 
       <section id="facilities" className="mx-auto max-w-6xl px-5 py-16 lg:px-0">
-        <p className="text-xs font-semibold uppercase text-primary">Our facilities</p><h2 className="mt-3 font-title text-3xl font-semibold">A practical place to stay.</h2><p className="mt-4 max-w-2xl leading-7 text-on-surface-variant">A small residence with the essentials for daily living and study. Standard rooms and simple facilities — without luxury extras.</p>
-        <div className="mt-9 grid gap-7 md:grid-cols-3">{[
-          { imageJpg: roomImageJpg, imageWebp: roomImageWebp, title: 'Three shared rooms', description: 'Three to four residents per room. Beds, chairs and desks are provided in these standard non-AC rooms.', alt: 'Illustrative standard bedroom with basic beds, cahirs and desks' },
-          { imageJpg: hallImageJpg, imageWebp: hallImageWebp, title: 'One medium-sized hall', description: 'A shared hall with a medium amount of space for spending time together outside the bedrooms.', alt: 'Illustrative medium-sized common hall with simple furnishings' },
-          { imageJpg: bathroomImageJpg, imageWebp: bathroomImageWebp, title: 'Three attached bathrooms', description: 'An attached bathroom for each room, with standard everyday facilities rather than luxury fittings.', alt: 'Illustrative small bathroom with basic fittings' },
-        ].map(item =>
-          <figure key={item.title}>
-            <div className="relative overflow-hidden rounded-lg">
-              <picture>
-                <source srcSet={item.imageWebp} type="image/webp" />
-                <img loading="lazy"
-                  src={item.imageJpg}
-                  alt={`${item.alt};
-                  sample photo, not the actual property`}
-                  width={1024} height={768} className="aspect-4/3 w-full object-cover" />
-              </picture>
-              <span className="absolute bottom-3 left-3 bg-surface/95 px-2 py-1 text-[11px] text-on-surface">Sample photo</span></div>
-            <figcaption className="pt-5">
-              <h3 className="font-title text-xl font-semibold">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-on-surface-variant">{item.description}</p>
-            </figcaption></figure>)}</div>
-        <p className="mt-7 border-t border-outline-variant/40 pt-5 text-sm text-on-surface-variant">All photos shown are samples, not photographs of our residence. Actual rooms and furnishings may differ.</p>
+        <p className="text-xs font-semibold uppercase text-primary">Our facilities</p>
+        <h2 className="mt-3 font-title text-3xl font-semibold">A practical place to stay.</h2>
+        <p className="mt-4 max-w-2xl leading-7 text-on-surface-variant">
+          A small residence with the essentials for daily living and study. Standard rooms and simple facilities — without luxury extras.
+        </p>
+
+        <div className="mt-9 grid gap-7 md:grid-cols-3">
+          {facilities.map((item, cardIndex) => (
+            <figure key={item.title}>
+              {/* Nested slider container for each card */}
+              <div className="relative overflow-hidden rounded-lg group">
+                <div ref={(el) => { scrollContainerRefs.current[cardIndex] = el }}
+                  onScroll={(e) => handleScroll(cardIndex, e)}
+                  className="flex snap-x snap-mandatory overflow-x-auto scrollbar-none scroll-smooth">
+                  {item.images.map((img, index) => (
+                    <div key={index} className="w-full shrink-0 snap-start relative">
+                      <picture>
+                        <source srcSet={img.imageWebp} type="image/webp" />
+                        <img
+                          loading="lazy"
+                          src={img.imagePng}
+                          alt={`${img.alt}; Actual property photos`}
+                          width={1024}
+                          height={768}
+                          className="aspect-4/3 w-full object-contain bg-neutral-100"
+                        />
+                      </picture>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Interactive White Dots Navigation */}
+                <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10 pointer-events-auto">
+                  {item.images.map((_, dotIndex) => (
+                    <button
+                      key={dotIndex}
+                      type="button"
+                      onClick={() => scrollToImage(cardIndex, dotIndex)}
+                      aria-label={`Go to slide ${dotIndex + 1}`}
+                      className={`h-2 rounded-full transition-all duration-300 ${activeIndices[cardIndex] === dotIndex
+                        ? "w-6 bg-white"
+                        : "w-2 bg-white/60 hover:bg-white"
+                        }`}
+                    />
+                  ))}
+                </div>
+
+              </div>
+
+              <figcaption className="pt-5">
+                <h3 className="font-title text-xl font-semibold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-on-surface-variant">{item.description}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
       </section>
 
       <section id="food" className="border-t border-outline-variant/40">
@@ -315,7 +412,7 @@ function Index() {
             <Home className="size-7 text-primary" strokeWidth={1.4} />
             <span><span className="block font-title text-sm font-semibold tracking-wide">TERRACE SUITES</span><span className="block text-[10px] uppercase text-primary">Girls residence</span></span>
           </div>
-          <p className="mt-4 max-w-sm text-sm leading-6 text-on-surface-variant">Standard terrace-level accommodation run by me: {residence.rooms} rooms for {residence.residentsPerRoom.min}–{residence.residentsPerRoom.max} residents each, {residence.attachedBathrooms} attached bathrooms and one medium-sized hall.</p>
+          <p className="mt-4 max-w-sm text-sm leading-6 text-on-surface-variant">Standard terrace-level accommodation run by me: {residence.rooms} rooms for {residence.residentsPerRoom.min}–{residence.residentsPerRoom.max} residents each, {residence.attachedBathrooms} attached bathrooms and two medium-sized hall.</p>
         </div>
         <div>
           <h2 className="font-title text-sm font-semibold uppercase tracking-wide">Contact me</h2>
@@ -333,7 +430,6 @@ function Index() {
       <div className="border-t border-outline-variant/40">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-xs text-on-surface-variant lg:px-0">
           <p><CopyrightLine /></p>
-          <p>Photographs on this site are samples, not images of the property.</p>
         </div>
       </div>
     </footer>
