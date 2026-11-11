@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Girls PG near Elims College of Pharmacy | Terrace Suites Villadam"
+        title: "Girls PG near Elims College of Pharmacy | Terrace Suites Thrissur"
       },
       {
         name: "description",
