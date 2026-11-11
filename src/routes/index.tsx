@@ -37,7 +37,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "Girls PG near Elims College of Pharmacy | Terrace Suites"
+        content: "Girls PG near Elims College of Pharmacy | Terrace Suites Villadam Thrissur"
       },
       {
         property: "og:description",
