@@ -8,13 +8,21 @@ import foodImageWebp from "@/assets/sample-food.webp";
 import mapRouteImagePng from "@/assets/location.png";
 import mapRouteImageWebp from "@/assets/location.webp";
 import roomImage1Png from "@/assets/roomImage1.png";
+import roomImage1Webp from "@/assets/roomImage1.webp";
 import roomImage2Png from "@/assets/roomImage2.png";
+import roomImage2Webp from "@/assets/roomImage2.webp";
 import roomImage3Png from "@/assets/roomImage3.png";
+import roomImage3Webp from "@/assets/roomImage3.webp";
 import hallImage1Png from "@/assets/hallImage1.png";
+import hallImage1Webp from "@/assets/hallImage1.webp";
 import hallImage2Png from "@/assets/hallImage2.png";
+import hallImage2Webp from "@/assets/hallImage2.webp";
 import bathroomImage1Png from "@/assets/bathroomImage1.png";
+import bathroomImage1Webp from "@/assets/bathroomImage1.webp";
 import bathroomImage2Png from "@/assets/bathroomImage2.png";
+import bathroomImage2Webp from "@/assets/bathroomImage2.webp";
 import bathroomImage3Png from "@/assets/bathroomImage3.png";
+import bathroomImage3Webp from "@/assets/bathroomImage3.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -93,26 +101,26 @@ const facilities = [
     title: "Three shared rooms",
     description: "Three to four residents per room. Beds, chairs and desks are provided in these standard non-AC rooms.",
     images: [
-      { imagePng: roomImage1Png, imageWebp: "", alt: "Standard bedroom view with beds" },
-      { imagePng: roomImage2Png, imageWebp: "", alt: "Standard bedroom view with a bed" },
-       { imagePng: roomImage3Png, imageWebp: "", alt: "Standard bedroom view with a washbasin and mirror" },
+      { imagePng: roomImage1Png, imageWebp: roomImage1Webp, alt: "Standard bedroom view with beds" },
+      { imagePng: roomImage2Png, imageWebp: roomImage2Webp, alt: "Standard bedroom view with a bed" },
+       { imagePng: roomImage3Png, imageWebp: roomImage3Webp, alt: "Standard bedroom view with a washbasin and mirror" },
     ],
   },
   {
     title: "Two medium-sized hall",
     description: "Two shared hall with a medium amount of space for spending time together outside the bedrooms.",
     images: [
-      { imagePng: hallImage1Png, imageWebp: "", alt: "Medium-sized common hall main view" },
-      { imagePng: hallImage2Png, imageWebp: "", alt: "Seating area in the common hall" },
+      { imagePng: hallImage1Png, imageWebp: hallImage1Webp, alt: "Medium-sized common hall main view" },
+      { imagePng: hallImage2Png, imageWebp: hallImage2Webp, alt: "Seating area in the common hall" },
     ],
   },
   {
     title: "Three attached bathrooms",
     description: "An attached bathroom for each room, with standard everyday facilities rather than luxury fittings.",
     images: [
-      { imagePng: bathroomImage1Png, imageWebp: "", alt: "Attached bathroom door view / Front view" },
-      { imagePng: bathroomImage2Png, imageWebp: "", alt: "Attached bathroom with basic fittings" },
-      { imagePng: bathroomImage3Png, imageWebp: "", alt: "Attached bathroom with basic fittings" },
+      { imagePng: bathroomImage1Png, imageWebp: bathroomImage1Webp, alt: "Attached bathroom door view / Front view" },
+      { imagePng: bathroomImage2Png, imageWebp: bathroomImage2Webp, alt: "Attached bathroom with basic fittings" },
+      { imagePng: bathroomImage3Png, imageWebp: bathroomImage3Webp, alt: "Attached bathroom with basic fittings" },
     ],
   },
 ];
